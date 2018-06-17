@@ -1,0 +1,74 @@
+<div class="container">
+  <nav class="menu">
+    <ul class="op">
+      <li>
+        <a class="btn" [ngClass]="operation === 'multiplication' ? 'active' : ''" 
+        (click)="setOperation('multiplication')">
+          <span>x</span>
+        </a>
+      </li>
+      <li>
+        <a class="btn" [ngClass]="operation === 'addition' ? 'active' : ''" 
+        (click)="setOperation('addition')">
+          <span>+</span>
+        </a>
+      </li>
+      <li>
+        <a class="btn" [ngClass]="operation === 'soustraction' ? 'active' : ''" 
+        (click)="setOperation('soustraction')">
+          <span>-</span>
+        </a>
+      </li>
+      <li>
+        <a class="btn" [ngClass]="operation === 'mix' ? 'active' : ''" 
+        (click)="setOperation('mix')">
+          <span>?</span>
+        </a>
+      </li>
+    </ul>
+    <ul class="level">
+      <li>
+        <a class="btn" [ngClass]="level === 1 ? 'active' : ''" 
+        (click)="setOperation(1)">
+          <span>1</span>
+        </a>
+      </li>
+      <li>
+        <a class="btn" [ngClass]="level === 2 ? 'active' : ''" 
+        (click)="setOperation(2)">
+          <span>2</span>
+        </a>
+      </li>
+      <li>
+        <a class="btn" [ngClass]="level === 3 ? 'active' : ''" 
+        (click)="setOperation(3)">
+          <span>3</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="operation">
+    <div class="text {{currentOp.op}}">{{currentOp.digit1}} {{currentOp.opChar}} {{currentOp.digit2}}</div>
+    <div class="score">
+      <span class="ok">{{this.correct}}</span> /
+      <span class="ko">{{this.wrong}}</span>
+    </div>
+    <ul class="steps">
+      <li *ngFor="let s of steps;let i=index" class="step {{s}}">
+      </li>
+    </ul>
+  </div>
+  <div class="numbers">
+    <table appGoWild>
+      <tbody>
+        <tr *ngFor="let row of grid" class="odd">
+          <td class="field" *ngFor="let field of row;let i= index">
+            <a class="btn {{field.color}} {{field.help}}" (click)="setAnswer(field)">
+              <span>{{field.value}}</span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
